@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+             JavaScript try 和 catch
+                try 语句允许我们定义在执行时进行错误测试的代码块。
+                catch 语句允许我们定义当 try 代码块发生错误时，所执行的代码块。
+                JavaScript 语句 try 和 catch 是成对出现的。
+
+                try {
+                    ...    //一般会把可能出现问题的代码放到这里,也可以做异常的手动抛出
+                } catch(e) {
+                    ...    //一般书写异常的捕获与处理的代码
+                } finally {
+                    ...    //不管有没有异常,都必须要执行的代码,放到这里(记录日志等操作)
+                }
+        */
+        console.log(111)
+        console.log(222)
+        
+        try {
+            console.log(aaa) 
+        } catch (error) { //error:异常对象,系统会将捕获到的异常信息放到这个对象里面
+            console.log(error)//简单打印
+        }finally{ //finally语句,根据情况,可写可不写
+            console.log('记录日志')
+        }
+        
+        console.log(333)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+            then方法
+                完整情况下,then方法由两个参数,这两个参数都是函数类型
+                    第一个参数是promise执行成功之后的回调函数(状态变成fulfilled状态之后才会调用)
+                    第二个参数是promise执行失败之后的回调函数(状态变成rejected状态之后才会调用)
+
+                then方法里面函数执行的前提
+                    promise的状态必须发生改变(不能是pending状态)
+                    当变成fulfilled状态的时候,会调用第一个回调函数
+                    当变成rejected状态的时候,会调用第二个回调函数
+        */
+       //创建一个promise对象,必须传一个函数类型的参数
+       const p1 = new Promise((resolve,reject)=>{resolve()}) //--调用resolve(),就会执行第一个回调函数
+       console.log(p1)
+       p1.then(()=>console.log('执行成功了'),()=>console.log('执行失败了'))
+
+       //创建一个promise对象,必须传一个函数类型的参数
+       const p2 = new Promise((resolve,reject)=>{reject()}) //--调用reject(),就会执行第二个回调函数
+       console.log(p2)
+       p2.then(()=>console.log('执行成功了'),()=>console.log('执行失败了'))
+
+       //一般情况下,我们只需要在then方法中写一个函数(这个函数只有在fulfilled状态之后才会调用,rejected状态就不会被调用)
+       const p3 = new Promise((resolve,reject)=>{resolve()})
+       p3.then(()=>console.log('回调函数执行了'))
+
+       //在then方法中如果拿到结果属性中的数据? 给then方法里面的回调函数,添加一个参数,就可以拿到
+       const p4 = new Promise((resolve,reject)=>{resolve('successData')}) //将successData数据放到结果属性中
+       console.log(p4)
+       p4.then(data=>console.log('执行成功了'+data),()=>console.log('执行失败了'))//获取成功之后的结果属性中的值
+
+       const p5 = new Promise((resolve,reject)=>{reject('failedReason')}) //将failedReason数据放到结果属性中
+       console.log(p5)
+       p5.then(()=>console.log('执行成功了'),data=>console.log('执行失败了'+data))//获取失败之后的结果属性中的值
+
+
+    </script>
+</body>
+</html>

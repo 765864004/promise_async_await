@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+    /* 
+        await作用:可以直接获取promise结果属性中的值,必须存在于异步函数中
+    */
+    
+        //使用异步函数将整个执行过程包裹起来
+       async function fn() {
+            async function f2() {
+                return 'bbb'
+            }
+
+            const res2 = await f2()  //await就是等待它后面的promise执行完成之后,那都结果属性中的值
+            console.log(res2) //返回值直接就是bbb
+        }
+
+        fn()
+
+    </script>
+</body>
+
+</html>

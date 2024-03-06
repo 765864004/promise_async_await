@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .slider-bar {
+            position: absolute;
+            left: 50%;
+            top: 300px;
+            margin-left: 600px;
+            width: 45px;
+            height: 130px;
+            background-color: pink;
+        }
+        
+        .w {
+            width: 1200px;
+            margin: 10px auto;
+        }
+        
+        .header {
+            height: 150px;
+            background-color: purple;
+        }
+        
+        .banner {
+            height: 250px;
+            background-color: skyblue;
+        }
+        
+        .main {
+            height: 1000px;
+            background-color: yellowgreen;
+        }
+        
+        span {
+            display: none;
+            position: absolute;
+            bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slider-bar">
+        <span class="goBack">返回顶部</span>
+    </div>
+    <div class="header w">头部区域</div>
+    <div class="banner w">banner区域</div>
+    <div class="main w">主体部分</div>
+    
+    <script>
+        /* 
+            1,需求1,监听页面的滚动,当滚动到一定距离的时候,slider-bar由绝对定位变成固定定位
+                滚动的距离:banner区域的offsetTop的值
+                slider-bar由绝对定位变成固定定位:
+                    position:absolute -> fixed
+                    top属性的偏移值:slider-bar的offsetTop值 - banner区域的offsetTop的值
+
+            2,需求2,监听页面的滚动,当滚动到一定的距离的时候,让goBack元素由隐藏到显示
+                滚动的距离:main区域的offsetTop值
+                让goBack元素由隐藏到显示:display属性由none改成block
+        */
+        //获取slider-bar和banner元素
+        const slider_bar = document.querySelector('.slider-bar')
+        const banner = document.querySelector('.banner')
+
+        //获取他们的offsetTop值
+        const sliderTop = slider_bar.offsetTop
+        const bannerTop= banner.offsetTop
+
+        //计算二者的差值(将来作为slider-bar固定定位的偏移值,必须要在滚动事件之前计算好)
+        const fixedTopValue = sliderTop - bannerTop
+
+        //需求2的实现
+        //获取goBack元素
+        const  goBack = document.querySelector('.goBack')
+        //获取main元素的offsetTop值
+        const mainTop = document.querySelector('.main').offsetTop
+
+        //监听页面的滚动
+        window.addEventListener('scroll',function(){
+            //当滚动到一定距离的时候
+            if(scrollY >= bannerTop){
+                //将slider-bar由绝对定位变成固定定位
+                slider_bar.style.position = 'fixed'
+                slider_bar.style.top = fixedTopValue + 'px'
+            }else{
+                //还原成之前的状态
+                slider_bar.style.position = 'absolute'
+                slider_bar.style.top = '300px'
+            }
+
+            //当滚动到一定距离的时候
+            if(scrollY >= mainTop){
+                goBack.style.display = 'block'
+            }else{
+                goBack.style.display = 'none'
+            }
+        })
+    </script>
+</body>
+
+</html>

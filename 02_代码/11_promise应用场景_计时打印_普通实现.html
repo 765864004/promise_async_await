@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //1,分三次输出字符串,第一次间隔1秒后输出first,第二次间隔2秒后输出second,第三次间隔3秒后输出third
+        /* 
+            好处:书写简单
+            弊端:代码嵌套,可读性差
+
+            实现了效果:第一个定时器完成之后,启动第二个定时器,第二个定期完成之后,再启动第三个定时器
+        */
+
+        setTimeout(function () {
+            console.log('first')
+
+            setTimeout(function () {
+                console.log('second')
+
+                setTimeout(function () {
+                    console.log('third')
+                }, 3000)
+            }, 2000)
+
+        }, 1000)
+    </script>
+</body>
+
+</html>

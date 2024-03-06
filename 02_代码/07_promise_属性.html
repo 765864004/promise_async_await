@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //1,创建promise,必须要传一个函数类型的参数(这个函数一般有两个形参)
+        const p1 = new Promise((resolve,reject)=>{})
+        
+
+        //2,查看属性
+            //第一个属性是状态属性PromiseState,默认是pending(准备状态)
+            //第二个属性是结果属性PromiseResult,默认是undefined(里面默认没有数据)
+        console.log(p1)
+
+        //3,修改状态属性  --- 为了保证它后面的then方法的执行
+            //调用resolve()方法,当前promise的状态就会从pending状态转成fulfilled状态
+            const p2 = new Promise((resolve,reject)=>{resolve()})
+            console.log(p2)
+
+            //调用reject()方法,当前promise的状态就会从pending状态转成rejected状态
+            const p3 = new Promise((resolve,reject)=>{reject()})
+            console.log(p3)
+
+        //4,修改结果属性  --方便后续将数据传递到then方法的参数中,进行后续操作
+            //调用resolve()方法的时候,传递参数,将来这个数据就会保存到结果属性中
+            const p4 = new Promise((resolve,reject)=>{resolve('成功的数据')})
+            console.log(p4)
+
+            //调用reject()方法的时候,传递参数,将来这个数据就会保存到结果属性中
+            const p5 = new Promise((resolve,reject)=>{reject('失败的原因')})
+            console.log(p5)
+
+        //5,注意:promise的状态是不可逆的
+            const p6 = new Promise((resolve,reject)=>{resolve(),reject()})
+            console.log(p6)//最终的状态还是成功的状态
+    </script>
+</body>
+</html>

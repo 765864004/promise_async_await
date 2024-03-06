@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //1,分三次输出字符串,第一次间隔1秒后输出first,第二次间隔2秒后输出second,第三次间隔3秒后输出third
+        /* 
+            实现了效果:第一个定时器完成之后,启动第二个定时器,第二个定期完成之后,再启动第三个定时器
+        */
+
+        /*
+        使用连续的 then调用,只能保证第二个任务(打印second)接着第一个任务(打印first)
+                           不能保证第三个任务(打印third)接着第二个任务(打印second)
+        new Promise((resolve, reject) => {
+            setTimeout(function () {
+                console.log('first')
+                resolve()
+            }, 1000)
+        }).then(function () {
+            setTimeout(function () {
+                console.log('second')
+            }, 2000)
+        }).then(function () {
+            setTimeout(function () {
+                console.log('third')
+            }, 3000)
+        }) */
+
+        new Promise((resolve, reject) => {
+            setTimeout(function () {
+                console.log('first')
+                resolve()
+            }, 1000)
+        }).then(function () {
+            return new Promise((resolve, reject) => {
+                setTimeout(function () {
+                    console.log('second')
+                    resolve()
+                }, 2000)
+            })
+        }).then(function () {
+            //为了方便后面进行封装,将第三个定时器的打印也封装到一个新的promise对象中
+            // setTimeout(function () {
+            //     console.log('third')
+            // }, 3000)
+
+            return new Promise((resolve, reject) => {
+                setTimeout(function () {
+                    console.log('third')
+                    resolve()
+                }, 3000)
+            })
+        })
+    </script>
+</body>
+
+</html>

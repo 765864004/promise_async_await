@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //普通函数(同步函数)
+        function f1(){
+            return 'aaa'
+        }
+
+        const res1 = f1()
+        console.log(res1)
+
+        //异步函数(异步函数:返回值是一个promise,promise跟异步相关的)
+        async function f2(){
+            return 'bbb'
+        }
+
+        const res2 = f2()
+        console.log(res2) //返回值是一个promise对象,默认是fulfill状态,结果属性中的值是'bbb'
+
+        //就想要拿到bbb这个值
+        res2.then(data=>console.log(data)) //必须要调用then方法,而且还需要在函数中传一个参数才能拿到结果属性的值
+    </script>
+</body>
+</html>

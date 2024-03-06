@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            同步
+                执行任务的时候,必须要等待当前任务执行完成之后,才能执行下一个任务(排队执行)
+            异步
+                执行任务的时候,不必等待当前任务执行完成,直接执行下一个任务
+                相当于新开了一个线程,这个新开的线程执行新的任务,不会阻塞主线程
+        */
+
+        //同步打印:按照顺序打印  111,222,333
+        // console.log(111)
+        // console.log(222)
+        // console.log(333)
+
+        //使用promise 打印的顺序是 111 222 444  333  
+        console.log(111)
+        new Promise((resolve, reject) => {
+            console.log(222)
+            resolve()
+        }).then(() => {   //then就相当于新开了一个任务,不会阻塞444的打印
+            console.log(333)
+        })
+        console.log(444)
+    </script>
+</body>
+
+</html>

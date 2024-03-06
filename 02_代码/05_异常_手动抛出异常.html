@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+             手动抛出异常
+		        程序没有问题,程序员根据编程的需要,人为的抛出异常,达到某些目的,后续代码无法执行
+        */
+        const a = 10
+
+       console.log(111)
+       console.log(222)
+       
+        if(a > 5){
+            throw 'a太大了'  //手动抛出异常信息  a太大了   --- 后续代码也是无法执行
+        }
+
+       console.log(333)
+    </script>
+</body>
+</html>

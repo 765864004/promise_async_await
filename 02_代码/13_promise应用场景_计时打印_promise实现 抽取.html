@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //1,分三次输出字符串,第一次间隔1秒后输出first,第二次间隔2秒后输出second,第三次间隔3秒后输出third
+        /* 
+            抽取思路
+                将相同的代码放到一个函数中(函数就是封装一段具有特定功能的代码块)
+                把里面变化的数据提出来(打印的内容和定时时长),作为函数的参数,将来调用的时候,传实际参数
+
+            相同的代码
+                return new Promise((resolve, reject) => {
+                    setTimeout(function () {
+                        console.log('second')
+                        resolve()
+                    }, 2000)
+                })
+
+            封装成函数
+                function print(value,during){
+                    return new Promise((resolve, reject) => {
+                        setTimeout(function () {
+                            console.log(value)
+                            resolve()
+                        }, during)
+                    })
+                }
+        */
+
+        //定义一个定时打印的函数,函数返回一个promise对象
+        function print(value, during) {
+            return new Promise((resolve, reject) => {
+                setTimeout(function () {
+                    console.log(value)
+                    resolve()
+                }, during)
+            })
+        }
+
+        print('first',1000).then(function () {
+            return print('second',2000)
+        }).then(function () {
+            return print('third',3000)
+        })
+    </script>
+</body>
+
+</html>
